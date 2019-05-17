@@ -40,17 +40,17 @@ export default {
   methods: {
     submit() {
       if (this.counter < this.botQuestion.length) {
-        setTimeout(() => {
-          this.next();
-        }, 1000);
-      }else{
-        console.log(this.botQuestion)
+        this.userAnswer();
+      } else {
+        console.log(this.botQuestion);
       }
     },
-    next() {
+    userAnswer() {
       this.botQuestion[this.counter].answer = this.answer;
-      this.counter++;
       this.answer = "";
+      setTimeout(() => {
+        this.counter++;
+      }, 1500);
     }
   }
 };
