@@ -18,17 +18,23 @@
 export default {
   data() {
     return {
-      botQuestion:[
-         "what is your name",
-        "ok, where do you stay ",
-        ", wow thats a nice place \n welcome ",
-        "ok, what do you want to buy"
+      botQuestion: [
+        {question:"what is your name",option:[]},
+        {question:"ok, where do you stay ", option:[]},
+        {question:", wow thats a nice place \n welcome ",option:[]},
+        {question:"ok, what do you want to buy", option:[]},
+        {question:"sex ??", option:["male", "female"]},
+        {question:"categories", option:["bags","shoes", "clothings"]},
+        "here you are"
       ],
       questions: [
-        {id:1, questions: "what is your name", answers: "" },
-        {id:2, questions:"", answers:''},
-        {id:3, questions:"", answers:''},
-        {id:4, questions:"", answers:''}
+        { id: 1, questions: "what is your name", answers: "" },
+        { id: 2, questions: "", answers: "" },
+        { id: 3, questions: "", answers: "" },
+        { id: 4, questions: "", answers: "" },
+        { id: 5, questions: "", answers: "" },
+        { id: 6, questions: "", answers: "" },
+        { id: 7, questions: "", answers: "" }
       ],
       counter: 0,
       answers: [],
@@ -37,16 +43,19 @@ export default {
   },
   methods: {
     getAnswer() {
-      this.questions[this.counter].answers = this.answer;
-      this.answers.push(this.answer)
-      
-      // if there are exceptions in the questions
-      // if(this.counter === 1){
-      //   this.questions[this.counter].questions = `${this.answer} ${this.botQuestion[this.counter]} ${this.answer}`
-      //   this.counter++
-      // }
+      if (this.counter < questions.length) {
+
+
+        this.questions[this.counter].answers = this.answer;
+        this.answers.push(this.answer);
+        setTimeout(() => {
+          this.move();
+        }, 500);
+      }
+    },
+    move() {
       this.counter++;
-      this.questions[this.counter].questions = `${this.answer} ${this.botQuestion[this.counter]}`
+      this.questions[this.counter].questions = `${this.answer} ${this.botQuestion[this.counter].question}`;
       this.answer = "";
     }
   }
